@@ -31,23 +31,25 @@ TCS34725
 
         Get or set the measurement gain of the sensor.
 
-    .. method:: integration_time([2.4-614.4])
+    .. method:: integration_time([value])
 
-        Get or set the integraton time for measurements in milliseconds.
+        Get or set the integraton time for measurements in milliseconds,
+        from 2.4ms to 614.4ms in steps of 2.4ms.
 
     .. method:: sensor_id()
 
         Return the internal ID of the sensor, describing its model and
         revision number.
 
-    .. method:: read(raw=False)
+    .. method:: read([raw])
 
         Read a measurement from the sensor.
 
-        If ``raw`` is ``False``, returns a tuple of floating point values
-        denoting color temperature in kelvins and luminosity in lux. If it's
-        ``True``, returns a 4-tuple of integer numbers, corresponding to the
-        readings of the red, green, blue and clear channels.
+        If ``raw`` is ``False`` (the deafult), returns a tuple of floating
+        point values denoting color temperature in kelvins and luminosity in
+        lux. If it's ``True``, returns a 4-tuple of integer numbers,
+        corresponding to the readings of the red, green, blue and clear
+        channels.
 
         If at the moment of calling this method, the sensor is inactive,
         it will be activated, the method will block for a time necessary for
@@ -55,7 +57,7 @@ TCS34725
         the sensor. If the sensor was active, the library may still wait for
         the sensor to complete the measurement, if it's not ready.
 
-    .. method:: interrupt([cycles], [min_value], [max_value])
+    .. method:: interrupt([cycles] [, min_value] [, max_value])
 
         Get or set the interrupt settings.
 
@@ -67,7 +69,7 @@ TCS34725
         in a row fall out of bounds. When set to -1, interrupts are disabled.
 
         The ``min_value`` and ``max_value`` specify the window for the
-        broadband channel to fit in.
+        clear channel to fit in.
 
         Whenever the interrupt is activated, the ``Int`` pin of the sensor
         will be pulled low and stay in that state until cleared. You can
