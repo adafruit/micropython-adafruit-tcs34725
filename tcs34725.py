@@ -123,7 +123,7 @@ class TCS34725:
         cct = 449.0 * n**3 + 3525.0 * n**2 + 6823.3 * n + 5520.33
         return cct, y
 
-    def interrupt(self, cycles=None, min_value=None, max_value=None):
+    def threshold(self, cycles=None, min_value=None, max_value=None):
         if cycles is None and min_value is None and max_value is None:
             min_value = self._register16(_REGISTER_AILT)
             max_value = self._register16(_REGISTER_AILT)
@@ -146,8 +146,9 @@ class TCS34725:
                     raise ValueError("invalid persistence cycles")
                 self._register8(_REGISTER_APERS, _CYCLES.index(cycles))
 
-    def has_interrupt(self):
-        return bool(self._register8(_REGISTER_STATUS) & _ENABLE_AIEN)
-
-    def clear_interrupt(self):
+    def interrupt(self, value=None):
+        if value is None:
+            return bool(self._register8(_REGISTER_STATUS) & _ENABLE_AIEN)
+        if value:
+            raise ValueError("interrupt can only be cleared")
         self.i2c.writeto(self.address, b'\xe6')

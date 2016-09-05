@@ -57,7 +57,7 @@ TCS34725
         the sensor. If the sensor was active, the library may still wait for
         the sensor to complete the measurement, if it's not ready.
 
-    .. method:: interrupt([cycles] [, min_value] [, max_value])
+    .. method:: threshold([cycles] [, min_value] [, max_value])
 
         Get or set the interrupt settings.
 
@@ -78,10 +78,11 @@ TCS34725
 
         Note that for the interrupt pin to work, the sensor must stay active.
 
-    .. method:: has_interrupt()
+    .. method:: interrupt([False])
 
-        Return ``True`` if an intrerrupt is triggered, otherwise ``False``.
+        Get or set the status of interrupt.
 
-    .. method:: clear_interrupt()
+        Without arguments, returns ``True`` if an interrupt is triggered,
+        otherwise returns ``False``.
 
-        Clears the interrupt state, bringing the ``Int`` pin back to neutral.
+        When ``False`` is passed as an argument, clears the interrupt.
