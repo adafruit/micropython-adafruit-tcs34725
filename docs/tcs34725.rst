@@ -64,17 +64,17 @@ TCS34725
         If called without arguments, returns a triple of values.
 
         The ``cycles`` argument specifies how many cycles are needed to trigger
-        the interrupt. When set to 0, each measurement will do it. If set to
-        1-15, the interrupt will be triggered only when so many measurements
-        in a row fall out of bounds. When set to -1, interrupts are disabled.
+        the interrupt. When set to 0, each measurement will do it. If set to 1,
+        2, 3, or 5-60 (in increments of 5), the interrupt will be triggered
+        only when so many measurements in a row fall out of bounds. When set to
+        -1, interrupts are disabled.
 
-        The ``min_value`` and ``max_value`` specify the window for the
-        clear channel to fit in.
+        The ``min_value`` and ``max_value`` specify the window for the clear
+        channel to fit in.
 
-        Whenever the interrupt is activated, the ``Int`` pin of the sensor
-        will be pulled low and stay in that state until cleared. You can
-        connect it to one of the pins and set a pin interrupt to detect that
-        event.
+        Whenever the interrupt is activated, the ``Int`` pin of the sensor will
+        be pulled low and stay in that state until cleared. You can connect it
+        to one of the pins and set a pin interrupt to detect that event.
 
         Note that for the interrupt pin to work, the sensor must stay active.
 
