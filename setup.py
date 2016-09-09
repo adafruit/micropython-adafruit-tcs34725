@@ -2,7 +2,7 @@ from distutils.core import setup
 
 
 setup(
-    name='Adafruit-upy_tcs34725',
+    name='micropython-adafruit-tcs34725',
     py_modules=['tcs34725'],
     version="1.0",
     description="Driver for MicroPython for the tcs34725 RGB sensor.",
