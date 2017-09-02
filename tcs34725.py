@@ -123,18 +123,6 @@ class TCS34725:
         cct = 449.0 * n**3 + 3525.0 * n**2 + 6823.3 * n + 5520.33
         return cct, y
 
-    def html_rgb(self, data):
-
-        r, g, b, c = data
-        red = pow((int((r/c) * 256) / 255), 2.5) * 255
-        green = pow((int((g/c) * 256) / 255), 2.5) * 255
-        blue = pow((int((b/c) * 256) / 255), 2.5) * 255
-
-        rgbhex = "{0:02x}{1:02x}{2:02x}".format(int(red),
-                                 int(green),
-                                 int(blue))
-        return red, green, blue, rgbhex
-
     def threshold(self, cycles=None, min_value=None, max_value=None):
         if cycles is None and min_value is None and max_value is None:
             min_value = self._register16(_REGISTER_AILT)
@@ -164,3 +152,17 @@ class TCS34725:
         if value:
             raise ValueError("interrupt can only be cleared")
         self.i2c.writeto(self.address, b'\xe6')
+
+
+def html_rgb(data):
+    r, g, b, c = data
+    red = pow((int((r/c) * 256) / 255), 2.5) * 255
+    green = pow((int((g/c) * 256) / 255), 2.5) * 255
+    blue = pow((int((b/c) * 256) / 255), 2.5) * 255
+    return red, green, blue
+
+def html_hex(data):
+    r, g, b = html_rgb(data)
+    return "{0:02x}{1:02x}{2:02x}".format(int(r),
+                             int(g),
+                             int(b))
