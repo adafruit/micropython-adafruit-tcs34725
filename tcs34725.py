@@ -123,6 +123,23 @@ class TCS34725:
         cct = 449.0 * n**3 + 3525.0 * n**2 + 6823.3 * n + 5520.33
         return cct, y
 
+    def html_rgb(self):
+        r, g, b, c = self.read(raw=True)
+        red = int((r/c) * 256)
+        green = int((g/c) * 256)
+        blue = int((b/c) * 256)
+
+        gammatable = {}
+        for x, y in enumerate(range(0, 256)):
+            x = x / 255
+            x = pow(x, 2.5)
+            x = x * 255
+            gammatable[y] = x
+        rgbhex = "{0:02x}{1:02x}{2:02x}".format(int(gammatable[red]),
+                                 int(gammatable[green]),
+                                 int(gammatable[blue]))
+        return rgbhex
+
     def threshold(self, cycles=None, min_value=None, max_value=None):
         if cycles is None and min_value is None and max_value is None:
             min_value = self._register16(_REGISTER_AILT)
