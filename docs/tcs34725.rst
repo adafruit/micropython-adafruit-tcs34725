@@ -57,6 +57,11 @@ TCS34725
         the sensor. If the sensor was active, the library may still wait for
         the sensor to complete the measurement, if it's not ready.
 
+    .. method:: html_rgb(data)
+
+        Convert the 4-tuple values returned by ``read(raw=True)`` to a
+        4-tuple of 8 bit RGB values, and the HTML hex value.
+
     .. method:: threshold([cycles] [, min_value] [, max_value])
 
         Get or set the interrupt settings.
