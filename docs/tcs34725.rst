@@ -86,3 +86,13 @@ TCS34725
         otherwise returns ``False``.
 
         When ``False`` is passed as an argument, clears the interrupt.
+
+.. function:: html_rgb(data)
+
+        Convert the 4-tuple values returned by ``read(raw=True)`` to a
+        3-tuple of 8 bit RGB values.
+
+.. function:: html_hex(data)
+
+        Convert the 4-tuple values returned by ``read(raw=True)`` to a
+        string of the HTML hex values for the color.
