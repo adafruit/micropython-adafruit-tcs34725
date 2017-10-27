@@ -135,7 +135,7 @@ class TCS34725:
         if min_value is not None:
             self._register16(_REGISTER_AILT, min_value)
         if max_value is not None:
-            self._register16(_REGISTER_AILT, max_value)
+            self._register16(_REGISTER_AIHT, max_value)
         if cycles is not None:
             enable = self._register8(_REGISTER_ENABLE)
             if cycles == -1:
